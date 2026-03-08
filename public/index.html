@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kreatur-Verkleiden!</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Kreatur-Verkleiden!</h1>
+    <p class="subtitle">Wähle ein Tier und verkleide es!</p>
+
+    <!-- Animal Selection -->
+    <div id="animal-picker">
+      <button class="animal-btn active" data-animal="cat" title="Katze">🐱</button>
+      <button class="animal-btn" data-animal="dog" title="Hund">🐶</button>
+      <button class="animal-btn" data-animal="bunny" title="Hase">🐰</button>
+      <button class="animal-btn" data-animal="bear" title="Bär">🐻</button>
+      <button class="animal-btn" data-animal="frog" title="Frosch">🐸</button>
+    </div>
+
+    <div id="main-area">
+      <!-- Creature Display -->
+      <div id="stage">
+        <div id="creature">
+          <div id="creature-body"></div>
+          <div id="slot-hat" class="slot" data-slot="hat"></div>
+          <div id="slot-eyes" class="slot" data-slot="eyes"></div>
+          <div id="slot-mouth" class="slot" data-slot="mouth"></div>
+          <div id="slot-body" class="slot" data-slot="body"></div>
+          <div id="slot-hand" class="slot" data-slot="hand"></div>
+          <div id="slot-shoes" class="slot" data-slot="shoes"></div>
+          <div id="creature-face">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="mouth"></div>
+            <div class="cheek left"></div>
+            <div class="cheek right"></div>
+          </div>
+        </div>
+        <div id="creature-name-display"></div>
+      </div>
+
+      <!-- Items Panel -->
+      <div id="items-panel">
+        <div id="category-tabs">
+          <button class="tab active" data-category="hat">Hüte</button>
+          <button class="tab" data-category="eyes">Brillen</button>
+          <button class="tab" data-category="mouth">Mund</button>
+          <button class="tab" data-category="body">Outfit</button>
+          <button class="tab" data-category="hand">Hand</button>
+          <button class="tab" data-category="shoes">Schuhe</button>
+        </div>
+        <div id="items-grid"></div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div id="actions">
+      <button id="btn-random" class="action-btn">🎲 Zufall!</button>
+      <button id="btn-clear" class="action-btn">🧹 Ausziehen</button>
+      <button id="btn-name" class="action-btn">✏️ Name geben</button>
+      <button id="btn-screenshot" class="action-btn">📸 Foto!</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

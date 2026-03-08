@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #ffb6c1;
+  --lavender: #e6d5f5;
+  --mint: #b5ead7;
+  --peach: #ffdac1;
+  --sky: #c1e1ff;
+  --lemon: #fff5ba;
+  --bg: #fef6ff;
+  --card: #ffffff;
+  --text: #5a4a6a;
+  --shadow: rgba(150, 120, 180, 0.15);
+}
+
+body {
+  font-family: 'Baloo 2', cursive, sans-serif;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--lavender) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--mint) 0%, transparent 40%),
+    radial-gradient(circle at 50% 10%, var(--lemon) 0%, transparent 30%);
+  min-height: 100vh;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c97bdb, #7bb8db, #7bdb9a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+  text-shadow: none;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #9a8aaa;
+  margin-bottom: 16px;
+}
+
+/* Animal Picker */
+#animal-picker {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.animal-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid var(--lavender);
+  background: var(--card);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.animal-btn:hover {
+  transform: scale(1.15);
+  border-color: var(--pink);
+}
+
+.animal-btn.active {
+  border-color: #c97bdb;
+  background: var(--lavender);
+  transform: scale(1.15);
+}
+
+/* Main Area */
+#main-area {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Stage */
+#stage {
+  flex: 0 0 320px;
+  height: 400px;
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 4px 20px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--lavender);
+}
+
+#stage::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, var(--mint), transparent);
+  border-radius: 0 0 20px 20px;
+}
+
+/* Creature */
+#creature {
+  position: relative;
+  width: 200px;
+  height: 260px;
+  z-index: 1;
+}
+
+#creature-body {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 160px;
+  border-radius: 50% 50% 45% 45%;
+  transition: background 0.3s;
+}
+
+#creature-face {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 100px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.eye {
+  position: absolute;
+  width: 24px;
+  height: 28px;
+  background: #3a2a4a;
+  border-radius: 50%;
+  top: 20px;
+}
+
+.eye::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+}
+
+.eye.left { left: 20px; }
+.eye.right { right: 20px; }
+
+.mouth {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  border-bottom: 3px solid #3a2a4a;
+  border-radius: 0 0 50% 50%;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cheek {
+  position: absolute;
+  width: 22px;
+  height: 14px;
+  background: var(--pink);
+  border-radius: 50%;
+  opacity: 0.5;
+  bottom: 28px;
+}
+
+.cheek.left { left: 8px; }
+.cheek.right { right: 8px; }
+
+/* Slots */
+.slot {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  pointer-events: none;
+}
+
+#slot-hat {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 60px;
+  font-size: 3rem;
+}
+
+#slot-eyes {
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 40px;
+  font-size: 2.5rem;
+}
+
+#slot-mouth {
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 30px;
+}
+
+#slot-body {
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 100px;
+  font-size: 3.5rem;
+}
+
+#slot-hand {
+  top: 120px;
+  right: -10px;
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+}
+
+#slot-shoes {
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 40px;
+  font-size: 2rem;
+}
+
+#creature-name-display {
+  position: absolute;
+  bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  z-index: 10;
+  background: rgba(255,255,255,0.7);
+  padding: 2px 14px;
+  border-radius: 12px;
+}
+
+/* Items Panel */
+#items-panel {
+  flex: 1;
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 4px 20px var(--shadow);
+  padding: 16px;
+  border: 3px solid var(--lavender);
+  min-height: 400px;
+}
+
+#category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tab {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid var(--lavender);
+  background: white;
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  background: var(--lavender);
+}
+
+.tab.active {
+  background: #c97bdb;
+  color: white;
+  border-color: #c97bdb;
+}
+
+#items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 10px;
+}
+
+.item-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  border: 2px solid var(--lavender);
+  background: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px var(--shadow);
+  position: relative;
+}
+
+.item-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--pink);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.item-btn.selected {
+  border-color: #c97bdb;
+  background: var(--lavender);
+  transform: scale(1.1);
+}
+
+.item-btn .item-name {
+  position: absolute;
+  bottom: -2px;
+  font-size: 0.5rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Actions */
+#actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: 2px solid var(--lavender);
+  background: var(--card);
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+  background: var(--lavender);
+}
+
+/* Bounce animation when equipping */
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.3); }
+}
+
+@keyframes bounceHand {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.slot.equip-bounce {
+  animation: bounce 0.3s ease;
+}
+
+#slot-hand.equip-bounce {
+  animation: bounceHand 0.3s ease;
+}
+
+/* Stars decoration */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.star {
+  position: fixed;
+  font-size: 1.2rem;
+  opacity: 0.3;
+  animation: twinkle 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  #main-area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #stage {
+    flex: none;
+    width: 100%;
+    max-width: 320px;
+    height: 350px;
+  }
+
+  #items-panel {
+    width: 100%;
+  }
+
+  h1 { font-size: 1.8rem; }
+}
