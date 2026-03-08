@@ -11,38 +11,61 @@
     <h1>Kreatur-Verkleiden!</h1>
     <p class="subtitle">Wähle ein Tier und verkleide es!</p>
 
-    <!-- Animal Selection -->
-    <div id="animal-picker">
-      <button class="animal-btn active" data-animal="cat" title="Katze">🐱</button>
-      <button class="animal-btn" data-animal="dog" title="Hund">🐶</button>
-      <button class="animal-btn" data-animal="bunny" title="Hase">🐰</button>
-      <button class="animal-btn" data-animal="bear" title="Bär">🐻</button>
-      <button class="animal-btn" data-animal="frog" title="Frosch">🐸</button>
-    </div>
+    <div id="animal-picker"></div>
 
     <div id="main-area">
-      <!-- Creature Display -->
       <div id="stage">
-        <div id="creature">
-          <div id="creature-body"></div>
-          <div id="slot-hat" class="slot" data-slot="hat"></div>
-          <div id="slot-eyes" class="slot" data-slot="eyes"></div>
-          <div id="slot-mouth" class="slot" data-slot="mouth"></div>
-          <div id="slot-body" class="slot" data-slot="body"></div>
-          <div id="slot-hand" class="slot" data-slot="hand"></div>
-          <div id="slot-shoes" class="slot" data-slot="shoes"></div>
-          <div id="creature-face">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-            <div class="mouth"></div>
-            <div class="cheek left"></div>
-            <div class="cheek right"></div>
-          </div>
-        </div>
+        <svg id="creature-svg" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bodyGrad" cx="50%" cy="40%" r="55%">
+              <stop offset="0%" stop-color="#fff" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#000" stop-opacity="0.08"/>
+            </radialGradient>
+            <radialGradient id="cheekGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff9999" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#ff9999" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="shadow" x="-10%" y="-10%" width="130%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.12"/>
+            </filter>
+            <filter id="innerShadow">
+              <feComponentTransfer in="SourceAlpha">
+                <feFuncA type="table" tableValues="1 0"/>
+              </feComponentTransfer>
+              <feGaussianBlur stdDeviation="3"/>
+              <feOffset dx="0" dy="2" result="offsetblur"/>
+              <feFlood flood-color="#000" flood-opacity="0.15" result="color"/>
+              <feComposite in2="offsetblur" operator="in"/>
+              <feComposite in2="SourceAlpha" operator="in"/>
+              <feMerge>
+                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Ground shadow -->
+          <ellipse cx="150" cy="345" rx="80" ry="10" fill="rgba(0,0,0,0.08)"/>
+
+          <!-- Animal layers (built by JS) -->
+          <g id="layer-tail"></g>
+          <g id="layer-body-back"></g>
+          <g id="layer-legs"></g>
+          <g id="layer-body"></g>
+          <g id="layer-arms"></g>
+          <g id="layer-outfit"></g>
+          <g id="layer-head"></g>
+          <g id="layer-ears"></g>
+          <g id="layer-hat"></g>
+          <g id="layer-face"></g>
+          <g id="layer-eyewear"></g>
+          <g id="layer-mouthwear"></g>
+          <g id="layer-hand-item"></g>
+          <g id="layer-shoes"></g>
+        </svg>
         <div id="creature-name-display"></div>
       </div>
 
-      <!-- Items Panel -->
       <div id="items-panel">
         <div id="category-tabs">
           <button class="tab active" data-category="hat">Hüte</button>
@@ -56,7 +79,6 @@
       </div>
     </div>
 
-    <!-- Actions -->
     <div id="actions">
       <button id="btn-random" class="action-btn">🎲 Zufall!</button>
       <button id="btn-clear" class="action-btn">🧹 Ausziehen</button>
